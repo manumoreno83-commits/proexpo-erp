@@ -1,0 +1,10 @@
+
+                                                                                                                                            openTaskModal: () => {
+                                                                                                                                                const select = document.getElementById('task-project-id');
+                                                                                                                                                if (select) {
+                                                                                                                                                    select.innerHTML = '<option value="" style="color:black;">-- Choose Project --</option>' +
+                                                                                                                                                        app.state.projects.map(p => `< option value = "${p.id}" style = "color:black;" > ${ p.client } @${ p.event }</option > `).join('');
+                                                                                                                                                    // Fix: ensure select itself is styled correctly for visibility
+                                                                                                                                                    select.style.color = 'white';
+                                                                                                                                                    select.style.background = 'rgba(255,255,255,0.05)';
+                                                                                                                                                }

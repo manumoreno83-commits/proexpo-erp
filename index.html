@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRO EXPO</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Excel Library -->
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar glass">
+            <div class="logo"
+                style="padding: 24px; border-bottom: 1px solid var(--glass-border); margin-bottom: 20px; text-align: center;">
+                <div
+                    style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(45deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -1px;">
+                    PRO EXPO</div>
+            </div>
+
+            <nav id="sidebar-nav">
+                <button id="nav-dashboard" class="nav-item active" onclick="app.navigate('dashboard')">
+                    <i data-lucide="layout-dashboard"></i> <span class="nav-text">Dashboard</span>
+                </button>
+                <button id="nav-projects" class="nav-item" onclick="app.navigate('projects')">
+                    <i data-lucide="briefcase"></i> <span class="nav-text">Projects</span>
+                </button>
+                <button id="nav-tradeshows" class="nav-item" onclick="app.navigate('tradeshows')">
+                    <i data-lucide="map"></i> <span class="nav-text">Tradeshows</span>
+                </button>
+                <button id="nav-clients" class="nav-item" onclick="app.navigate('clients')">
+                    <i data-lucide="users"></i> <span class="nav-text">Clients</span>
+                </button>
+                <!-- <button class="nav-item" onclick="app.navigate('tariffs')">
+                    <i data-lucide="tags"></i> Tariffs
+                </button> -->
+                <button id="nav-quotation" class="nav-item" onclick="app.navigate('quotation')">
+                    <i data-lucide="file-text"></i> <span class="nav-text">Quotations</span>
+                </button>
+                <button id="nav-knowledge" class="nav-item" onclick="app.navigate('knowledge')">
+                    <i data-lucide="brain-circuit"></i> <span class="nav-text">AI Center</span>
+                </button>
+                <button id="nav-settings" class="nav-item" onclick="app.navigate('settings')">
+                    <i data-lucide="settings"></i> <span class="nav-text">Settings</span>
+                </button>
+            </nav>
+
+            <div class="user-profile"
+                style="display: flex; align-items: center; gap: 12px; padding: 16px; border-top: 1px solid var(--glass-border); margin-top: auto;">
+                <button onclick="app.logout()" class="btn btn-outline"
+                    style="padding: 8px 12px; border: none; background: rgba(255,255,255,0.05); color: var(--text-secondary); cursor: pointer; border-radius: 8px; transition: all 0.2s;"
+                    title="Logout" onmouseover="this.style.background='rgba(255,0,0,0.1)'; this.style.color='#ef4444'"
+                    onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.color='var(--text-secondary)'">
+                    <i data-lucide="log-out" style="width: 18px; height: 18px;"></i>
+                </button>
+                <div style="flex: 1; display: flex; align-items: center; gap: 12px; cursor: pointer; padding: 8px; border-radius: 8px; transition: background 0.2s;"
+                    onclick="app.navigate('profile')" onmouseover="this.style.background='rgba(255,255,255,0.05)'"
+                    onmouseout="this.style.background='transparent'">
+                    <div class="avatar" id="sidebar-avatar">M</div>
+                    <div class="info">
+                        <span class="name" id="sidebar-name">User</span>
+                        <span class="role" id="sidebar-role">Admin</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar glass">
+                <h1 id="page-title">Dashboard</h1>
+                <div class="actions">
+                    <button class="btn btn-outline" style="margin-right:8px; border:none; padding:8px;"
+                        onclick="app.toggleEditMode()" title="Enable Edit Mode">
+                        <i data-lucide="pencil" style="width:20px; color:var(--text-secondary);"></i>
+                    </button>
+                    <button id="new-project-btn-top" class="btn btn-outline btn-outline-accent"
+                        onclick="app.openProjectModal()">
+                        <i data-lucide="plus-circle"></i> <span class="nav-text">Project</span>
+                    </button>
+                    <button id="add-task-btn" class="btn btn-outline btn-outline-accent" onclick="app.openTaskModal()">
+                        <i data-lucide="check-square"></i> <span class="nav-text">New Task</span>
+                    </button>
+                    <button id="new-quote-btn" class="btn btn-outline btn-outline-accent" onclick="app.newQuote()">
+                        <i data-lucide="plus"></i> Quote
+                    </button>
+                </div>
+            </header>
+
+            <div id="content-area" class="content-wrapper">
+                <!-- Dynamic Content Injected Here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase Config -->
+    <script src="firebase-config.js"></script>
+
+    <!-- Main App -->
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
