@@ -13,7 +13,6 @@ const app = {
         linkedGoogle: false,
         linkedLinkedIn: false,
         tariffs: [],
-        tariffs: [],
         quotes: [],
         vendors: [
             // --- Graphics / Materials ---
@@ -41,11 +40,6 @@ const app = {
                     { item: "Textile Wall 3x3", unit: "unit", cost: 450.00 }
                 ]
             },
-            {
-                id: 4, name: "OnlinePrinters", category: "Graphics", country: "Europe", city: "Various", website: "https://onlineprinters.com", phone: "+34 93 123 4567", email: "service@onlineprinters.com", speciality: "Standard formats, Quick delivery",
-                pricing: []
-            },
-            {
             { id: 8, name: "Reflex", category: "AV", country: "Spain", city: "Barcelona", website: "reflex.es", phone: "", email: "", speciality: "LED Walls, Audio", pricing: [] }
         ],
         projects: [
